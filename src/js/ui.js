@@ -6,7 +6,7 @@ export class PhotoGallery {
     this.container = containerID;
     this.lightbox = new SimpleLightbox('.photo-card a', {
       captionsData: 'alt',
-      captionDelay: 250,
+      captionDelay: 450,
     });
   }
 

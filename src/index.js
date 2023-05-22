@@ -21,12 +21,14 @@ let isNotifySuccessCalled = false;
 function onSubmit(e) {
   e.preventDefault();
 
-  photoGallery.clear();
-
   const searchValue = e.target.searchQuery.value.trim().toLowerCase();
 
-  photoGalleryService.resetPage();
+  if (!searchValue) {
+    return;
+  }
 
+  photoGallery.clear();
+  photoGalleryService.resetPage();
   checkRequest(searchValue);
   e.target.searchQuery.value = '';
 }
@@ -65,6 +67,7 @@ async function checkRequest(searchValue) {
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
+    loadMoreButton.hideButton();
   }
 }
 

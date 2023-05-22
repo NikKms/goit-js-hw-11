@@ -1,3 +1,113 @@
-/* .hidden {
+/* style.css */
+
+/* Reset default margin and padding */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a modern font and background color to the entire page */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f8f8;
+}
+
+/* Center the search form and add some spacing */
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style the search input */
+.search-form input[type='text'] {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  outline: none;
+}
+
+/* Style the search button */
+.search-form button[type='submit'] {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin-left: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-form button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+/* Center the gallery container and add spacing */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin: 20px 0;
+}
+
+/* Style the image cards */
+.photo-card {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.photo-card a {
+  display: block;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.info {
+  padding: 12px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.info-item {
+  margin-bottom: 8px;
+}
+
+.load-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.load-btn:hover {
+  background-color: #0056b3;
+}
+
+.load-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.hidden {
   display: none;
-} */
+}
