@@ -111,3 +111,28 @@ body {
 .hidden {
   display: none;
 }
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.scroll-to-top button {
+  width: 40px;
+  padding: 10px;
+  font-size: 35px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.3;
+}
+
+.scroll-to-top button:hover {
+  background-color: #0056b3;
+  opacity: 1;
+}

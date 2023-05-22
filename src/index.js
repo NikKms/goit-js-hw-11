@@ -4,10 +4,17 @@ import { LoadMoreButton } from './js/load-button';
 import { PhotoGallery } from './js/ui';
 import Notiflix from 'notiflix';
 
-const { searchForm, gallery, loadBtn } = refs;
+const { searchForm, gallery, loadBtn, scrollToTopButton } = refs;
 
 searchForm.addEventListener('submit', onSubmit);
 loadBtn.addEventListener('click', loadMore);
+window.addEventListener('scroll', handleScroll);
+scrollToTopButton.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+});
 
 const photoGallery = new PhotoGallery(gallery);
 const photoGalleryService = new PhotoGalleryService();
@@ -17,6 +24,7 @@ const loadMoreButton = new LoadMoreButton({
 });
 
 let isNotifySuccessCalled = false;
+let isLoading = false;
 
 function onSubmit(e) {
   e.preventDefault();
@@ -35,7 +43,11 @@ function onSubmit(e) {
 
 async function checkRequest(searchValue) {
   try {
-    loadMoreButton.showButton();
+    if (isLoading) {
+      return;
+    }
+
+    isLoading = true;
     loadMoreButton.disableButton();
 
     const data = await photoGalleryService.fetchPhotos(searchValue);
@@ -61,13 +73,14 @@ async function checkRequest(searchValue) {
       isNotifySuccessCalled = true;
     }
 
-    loadMoreButton.enableButton();
+    isLoading = false;
   } catch (error) {
     console.error(error);
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
     loadMoreButton.hideButton();
+    isLoading = false;
   }
 }
 
@@ -75,4 +88,14 @@ function loadMore() {
   const searchValue = photoGalleryService.searchValue;
   photoGalleryService.nextPage();
   checkRequest(searchValue);
+}
+
+function handleScroll() {
+  const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+  if (scrollTop + clientHeight >= scrollHeight - 50) {
+    const searchValue = photoGalleryService.searchValue;
+    photoGalleryService.nextPage();
+    checkRequest(searchValue);
+  }
 }

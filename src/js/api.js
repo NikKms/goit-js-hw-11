@@ -27,7 +27,6 @@ class PhotoGalleryService {
     try {
       const { data } = await axios.get(
         `${PhotoGalleryService.URL}/?${this.getSearchQuery()}`
-        // `${PhotoGalleryService.URL}?key=${PhotoGalleryService.API_KEY}&q=${this.searchValue}&image_type=photo&orientation=horizontal&safe_search=true&page=${this.page}&per_page=5`
       );
       this.totalPhotos = data.totalHits;
       return data;
