@@ -37,6 +37,7 @@ function onSubmit(e) {
 
   photoGallery.clear();
   photoGalleryService.resetPage();
+  isNotifySuccessCalled = false;
   checkRequest(searchValue);
   e.target.searchQuery.value = '';
 }
